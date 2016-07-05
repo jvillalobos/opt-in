@@ -1,0 +1,10 @@
+"use strict";
+
+browser.runtime.onMessage.addListener(function(message, sender) {
+  // check storage for opt in
+  browser.storage.local.get("optIn", function(result) {
+    // send message back to content script with value of opt in
+    browser.tabs.sendMessage(
+      sender.tab.id, { "optIn" : (true == result.optIn)});
+  });
+});

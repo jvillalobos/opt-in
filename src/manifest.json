@@ -1,0 +1,36 @@
+{
+
+  "manifest_version": 2,
+  "name": "Opt-in",
+  "version": "1.0",
+
+  "description": "An example Firefox extension that shows how to display an opt-in that meets Mozilla's standards.",
+  "homepage_url": "https://github.com/jvillalobos/opt-in/",
+
+  "applications": {
+    "gecko": {
+      "id": "opt-in@xulforge.com",
+      "strict_min_version": "45.0.0"
+    }
+  },
+
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": "popup/toolbox.png",
+    "default_title": "Opt-in",
+    "default_popup": "popup/opt-in.html"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.mozilla.org/*"],
+      "js": ["borderify.js"]
+    }
+  ],
+
+  "permissions": ["storage"]
+}
