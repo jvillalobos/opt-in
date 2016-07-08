@@ -8,3 +8,9 @@ browser.runtime.onMessage.addListener(function(message, sender) {
       sender.tab.id, { "optIn" : (true == result.optIn)});
   });
 });
+
+browser.storage.local.get("optIn", function(result) {
+  if (!result.optIn) {
+    browser.tabs.create({ url: "popup/opt-in.html" });
+  }
+});
