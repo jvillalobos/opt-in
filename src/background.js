@@ -9,8 +9,9 @@ browser.runtime.onMessage.addListener(function(message, sender) {
   });
 });
 
-browser.storage.local.get("optIn", function(result) {
-  if (!result.optIn) {
+// show the tab if we haven't registered the user reacting to the prompt.
+browser.storage.local.get("optInShown", function(result) {
+  if (!result.optInShown) {
     browser.tabs.create({ url: "popup/opt-in.html" });
   }
 });
